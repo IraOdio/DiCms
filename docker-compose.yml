@@ -1,0 +1,72 @@
+version: '3.0'
+
+services:
+  nginx:
+    build:
+        context: ./docker/nginx
+    container_name: nginx1
+    ports:
+      - 80:80
+    depends_on:
+      - php
+    volumes:
+      - ./docker/nginx/conf.d/default.nginx:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/logs/:/var/log/nginx/
+      - ./:/var/www/html/
+    networks:
+      - frontend
+      - backend
+
+  php:
+    build:
+      context: ./docker/php
+    container_name: php1
+    environment:
+      PHP_IDE_CONFIG : "serverName=cms-dev.dima.ru"
+    expose:
+      - 9000
+      - 9003
+    volumes:
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+      - ./:/var/www/html/
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - backend
+
+  pgsql:
+    image: postgres:13.3
+    container_name: pgsql
+    volumes:
+      - ./docker/pgsql/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "laravel"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: /var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+#  mysql:
+#    image: mysql
+#    container_name: mysql
+#    volumes:
+#      - ./docker/mysql/data:/var/lib/mysql/data
+#    environment:
+#      MYSQL_ROOT_PASSWORD: "mysql_laravel"
+#      PGDATA: /var/lib/mysql/data/
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - backend
+
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+  default:
+    driver: bridge
