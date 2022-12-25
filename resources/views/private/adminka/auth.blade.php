@@ -1,4 +1,4 @@
-@extends('private.layout');
+@extends('private.layouts.layout-master');
 @section('content')
     AuthForm
 

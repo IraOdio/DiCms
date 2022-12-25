@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\BussinessLayout\ZeroLayout\Service\DebugBar;
+namespace App\BussinessLayout\ZeroLayout\DebugBar;
 use App\BussinessLayout\ZeroLayout\UI\ServiceHelperUI;
 use Debugbar;
 use Illuminate\Support\Facades\App;
