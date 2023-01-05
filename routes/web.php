@@ -29,7 +29,12 @@ Route::group([],function ($router){
             Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\RightRoleController::class,'showRightRoleView'])->name('lk-right-role-view');
             Route::get('/post',[\App\Http\Controllers\PublicVisibility\Web\RightRoleController::class,''])->name('lk-right-role-post-view');
         });
+        // endregion
 
+        // region Chat
+        Route::group(['prefix' => 'chat'], function ($router){
+            Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\ChatController::class,'showChatView'])->name('lk-chat-view');
+        });
         // endregion
     });
     Route::group(['prefix' => 'auth'],function (){

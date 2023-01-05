@@ -59,6 +59,10 @@
                             <a class="nav-link {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'lk-view' ? ' active' : '' }}"
                                aria-current="page" href="{{ route('lk-view') }}">Главная личного кабинета</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'lk-chat-view' ? ' active' : '' }}"
+                               aria-current="page" href="{{ route('lk-chat-view') }}">Чат</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'lk-right-role-view' ? ' active' : '' }}"
                                role="button" data-bs-toggle="dropdown" aria-expanded="false"
