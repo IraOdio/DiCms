@@ -4,11 +4,11 @@
 namespace App\BussinessLayout\ZeroLayout\Providers;
 
 
-use App\BussinessLayout\ZeroLayout\Logger\Abstracted\AbstractLogger;
+use App\BussinessLayout\ZeroLayout\Logger\Abstracted\LoggerAbstract;
 use App\BussinessLayout\ZeroLayout\Logger\Realization\DefaultLogger;
 use Illuminate\Support\ServiceProvider;
 
-class ZeroLayoutProvider extends ServiceProvider
+class ZeroLayoutServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -17,7 +17,7 @@ class ZeroLayoutProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(AbstractLogger::class,function(){
+        $this->app->bind(LoggerAbstract::class,function(){
             return new DefaultLogger();
         });
     }

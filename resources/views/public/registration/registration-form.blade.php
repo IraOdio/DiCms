@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="w-50 mx-auto">
-        <form action="{{route('registration-process')}}" method="POST">
+        <form action="{{route('registration-process-action')}}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="InputName" class="form-label">Name</label>

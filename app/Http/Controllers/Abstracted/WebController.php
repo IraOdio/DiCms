@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-abstract class WebController extends AbstractController
+abstract class WebController extends ControllerAbstract
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 

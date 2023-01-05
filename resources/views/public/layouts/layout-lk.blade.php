@@ -1,3 +1,4 @@
+@inject('localization','App\BussinessLayout\LocalizationLayout\Abstracted\LocalizationAbstract')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -18,25 +19,14 @@
 <body class="antialiased">
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Меню</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'home-view' ? ' active' : '' }}"
-                       aria-current="page" href="{{route('home-view')}}">Главная</a></li>
-                <li class="nav-item">
-                    <a class="nav-link {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'lk-view' ? ' active' : '' }}"
-                       aria-current="page" href="{{route('lk-view')}}">Личный кабинет</a></li>
-                <li class="nav-item">
-                    <a class="nav-link {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'auth-form-view' ? ' active' : '' }}"
-                       href="{{route('auth-form-view')}}">Авторизация</a></li>
-                <li class="nav-item">
-                    <a class="nav-link {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'registration-form-view' ? ' active' : '' }}"
-                       href="{{route('registration-form-view')}}">Регистрация</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="{{route('home-view')}}">Главная</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route('lk-view')}}">Личный кабинет</a></li>
             </ul>
         </div>
     </div>
@@ -56,10 +46,37 @@
     </div>
 </div>
 <div class="container text-center">
-    @yield('content')
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'lk-view' ? ' active' : '' }}"
+                               aria-current="page" href="{{ route('lk-view') }}">Главная личного кабинета</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ \Illuminate\Support\Facades\Route::currentRouteName() === 'lk-right-role-view' ? ' active' : '' }}"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                               href="{{ route('lk-right-role-view') }}">{{ $localization->message('navbar.right-role') }}</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('lk-right-role-view') }}">{{ $localization->message('navbar.right-role-getting') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('lk-right-role-post-view') }}">{{ $localization->message('navbar.right-role-posting') }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        @yield('content')
+    </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>

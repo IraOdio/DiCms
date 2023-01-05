@@ -13,27 +13,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group([],function ($router){
-    Route::get('/', [\App\Http\Controllers\PublicVisibility\Web\HomeController::class,'welcome'])->name('home');
+    Route::get('/', [\App\Http\Controllers\PublicVisibility\Web\HomeController::class,'welcome'])->name('home-view');
 
-    Route::group(['prefix' => env('APP_PUBLIC_LK_PREFIX')],function (){
-        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'showLkView'])->name('lk');
-        Route::get('/logout',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'showLogoutView'])->name('logout-message');
-        Route::post('/logout',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'logoutAction'])->name('logout-process');
+    Route::group(['prefix' => 'lk'],function (){
+        // Главная личного кабинета
+        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'showLkView'])->name('lk-view');
+
+        // region Logout
+        Route::get('/logout',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'showLogoutView'])->name('logout-message-view');
+        Route::post('/logout',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'logoutAction'])->name('logout-process-action');
+        // endregion
+
+        // region Right-Role
+        Route::group(['prefix' => 'right-role'],function ($router){
+            Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\RightRoleController::class,'showRightRoleView'])->name('lk-right-role-view');
+            Route::get('/post',[\App\Http\Controllers\PublicVisibility\Web\RightRoleController::class,''])->name('lk-right-role-post-view');
+        });
+
+        // endregion
     });
     Route::group(['prefix' => 'auth'],function (){
-        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\AuthController::class,'showAuthForm'])->name('auth-form');
-        Route::get('/failed',[\App\Http\Controllers\PublicVisibility\Web\AuthController::class,'showAuthFailed'])->name('auth-failed');
-        Route::post('/login',[\App\Http\Controllers\PublicVisibility\Web\AuthController::class,'loginAction'])->name('auth-process');
+        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\AuthController::class,'showAuthForm'])->name('auth-form-view');
+        Route::get('/failed',[\App\Http\Controllers\PublicVisibility\Web\AuthController::class,'showAuthFailed'])->name('auth-failed-view');
+        Route::post('/login',[\App\Http\Controllers\PublicVisibility\Web\AuthController::class,'loginAction'])->name('auth-process-action');
     });
     Route::group(['prefix' => 'reg'],function (){
-        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\RegistrationController::class,'showRegForm'])->name('registration-form');
-        Route::get('/success',[\App\Http\Controllers\PublicVisibility\Web\RegistrationController::class,'showSuccessViewAction'])->name('registration-success');
-        Route::post('/register',[\App\Http\Controllers\PublicVisibility\Web\RegistrationController::class,'registrationAction'])->name('registration-process');
+        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\RegistrationController::class,'showRegForm'])->name('registration-form-view');
+        Route::get('/success',[\App\Http\Controllers\PublicVisibility\Web\RegistrationController::class,'showSuccessViewAction'])->name('registration-success-view');
+        Route::post('/register',[\App\Http\Controllers\PublicVisibility\Web\RegistrationController::class,'registrationAction'])->name('registration-process-action');
     });
 
 });
 
-Route::group(['prefix' => env('APP_PRIVATE_AREA_PREFIX')],function ($router){
+Route::group(['prefix' => 'adminka'],function ($router){
     Route::get('/', [\App\Http\Controllers\PrivateVisibility\Web\HomeController::class,'welcome']);
 });
 

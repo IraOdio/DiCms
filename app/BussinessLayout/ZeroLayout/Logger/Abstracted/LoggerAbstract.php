@@ -7,7 +7,7 @@ namespace App\BussinessLayout\ZeroLayout\Logger\Abstracted;
 use Illuminate\Support\Facades\Log;
 use Psr\Log\LoggerInterface;
 
-abstract class AbstractLogger implements LoggerInterface
+abstract class LoggerAbstract implements LoggerInterface
 {
     protected LoggerInterface $logger;
 
@@ -16,12 +16,12 @@ abstract class AbstractLogger implements LoggerInterface
         $this->rebuildLogger();
     }
 
-    public function __invoke(string $pathFile = '') : AbstractLogger
+    public function __invoke(string $pathFile = '') : LoggerAbstract
     {
         $this->rebuildLogger($pathFile);
         return $this;
     }
-    public function rebuildLogger(string $pathFile = '') : AbstractLogger
+    public function rebuildLogger(string $pathFile = '') : LoggerAbstract
     {
         if (empty($pathFile)) $pathFile = 'undefined/undefined.log';
         $this->logger = Log::build([

@@ -22,7 +22,7 @@ class AuthController extends WebController
     {
         return view('public.auth.auth-failed');
     }
-    public function loginAction(LoginRequest $request)
+    public function loginAction(LoginRequest $request) : \Illuminate\Http\RedirectResponse
     {
         $credentials = $request->getCredentials();
         GodObjectHelper::getLogger("auth/master.log")->info("Получен запрос на авторизацию",[
@@ -35,7 +35,7 @@ class AuthController extends WebController
 
         Auth::login($user);
 
-        return redirect()->intended();
+        return $this->authenticated($request,$user);
     }
     /**
      * Handle response after user authenticated
@@ -47,6 +47,6 @@ class AuthController extends WebController
      */
     protected function authenticated(LoginRequest $request,User $user) : \Illuminate\Http\RedirectResponse
     {
-        return redirect()->intended();
+        return to_route('lk');
     }
 }

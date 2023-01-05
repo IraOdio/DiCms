@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Abstracted;
 use App\BussinessLayout\ZeroLayout\UI\ServiceHelperUI;
 use Illuminate\Http\JsonResponse;
 
-abstract class ApiController extends AbstractController
+abstract class ApiController extends ControllerAbstract
 {
     public string $ui = ServiceHelperUI::API_UI;
 
