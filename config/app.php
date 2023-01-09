@@ -195,7 +195,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\BussinessLayout\ZeroLayout\Providers\ZeroLayoutServiceProvider::class,
+        \App\CoreLayout\Providers\CoreLayoutServiceProvider::class,
         \App\BussinessLayout\LocalizationLayout\Providers\LocalizationServiceProvider::class,
 
     ],

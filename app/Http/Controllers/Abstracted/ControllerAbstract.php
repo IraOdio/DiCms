@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Abstracted;
 
-use App\BussinessLayout\ZeroLayout\UI\ServiceHelperUI;
+use App\CoreLayout\UI\UIHelper;
 use Illuminate\Routing\Controller as BaseController;
 
 abstract class ControllerAbstract extends BaseController
@@ -11,6 +11,6 @@ abstract class ControllerAbstract extends BaseController
 
     public function __construct()
     {
-        config([ServiceHelperUI::NAME_KEY_CONFIG => $this->ui]);
+        config([UIHelper::NAME_KEY_CONFIG => $this->ui]);
     }
 }

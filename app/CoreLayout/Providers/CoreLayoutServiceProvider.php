@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\BussinessLayout\ZeroLayout\Providers;
+namespace App\CoreLayout\Providers;
 
 
-use App\BussinessLayout\ZeroLayout\Logger\Abstracted\LoggerAbstract;
-use App\BussinessLayout\ZeroLayout\Logger\Realization\DefaultLogger;
+use App\CoreLayout\Logger\Abstracted\LoggerAbstract;
+use App\CoreLayout\Logger\Realization\DefaultLogger;
 use Illuminate\Support\ServiceProvider;
 
-class ZeroLayoutServiceProvider extends ServiceProvider
+class CoreLayoutServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.

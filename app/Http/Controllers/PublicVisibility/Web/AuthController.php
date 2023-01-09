@@ -4,8 +4,8 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
-use App\BussinessLayout\UserLayout\AuthLogic\Requests\LoginRequest;
-use App\BussinessLayout\ZeroLayout\GodObject\GodObjectHelper;
+use App\BussinessLayout\UserLayout\Requests\LoginRequest;
+use App\CoreLayout\CoreComponent;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -25,11 +25,11 @@ class AuthController extends WebController
     public function loginAction(LoginRequest $request) : \Illuminate\Http\RedirectResponse
     {
         $credentials = $request->getCredentials();
-        GodObjectHelper::getLogger("auth/master.log")->info("Получен запрос на авторизацию",[
+        CoreComponent::getLogger("auth/master.log")->info("Получен запрос на авторизацию",[
             'data' => $request->getCredentials()
         ]);
 
-        if(!Auth::validate($credentials)) return to_route('auth-failed')->withErrors(trans('auth.failed'));
+        if(!Auth::validate($credentials)) return to_route('auth-failed-view')->withErrors(trans('auth.failed'));
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
@@ -47,6 +47,6 @@ class AuthController extends WebController
      */
     protected function authenticated(LoginRequest $request,User $user) : \Illuminate\Http\RedirectResponse
     {
-        return to_route('lk');
+        return to_route('lk-view');
     }
 }

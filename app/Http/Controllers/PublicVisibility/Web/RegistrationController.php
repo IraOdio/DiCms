@@ -5,9 +5,8 @@ namespace App\Http\Controllers\PublicVisibility\Web;
 
 
 use App\BussinessLayout\UserLayout\EloquentModels\User;
-use App\BussinessLayout\UserLayout\RegistrationLogic\Requests\RegistrationRequest;
-use App\BussinessLayout\ZeroLayout\GodObject\GodObjectHelper;
-use App\BussinessLayout\ZeroLayout\Logger\Abstracted\AbstractLogger;
+use App\BussinessLayout\UserLayout\Requests\RegistrationRequest;
+use App\CoreLayout\CoreComponent;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
@@ -26,7 +25,7 @@ class RegistrationController extends WebController
     }
     public function registrationAction(RegistrationRequest $request) : \Illuminate\Http\RedirectResponse
     {
-        GodObjectHelper::getLogger("register/master.log")->debug('Получен запрос на регистрацию',[
+        CoreComponent::getLogger("register/master.log")->debug('Получен запрос на регистрацию',[
             'data' => $request->validated(),
             'password' => $request->validated('password')
         ]);

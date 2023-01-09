@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\BussinessLayout\ZeroLayout\UI;
+namespace App\CoreLayout\UI;
 
 
-class ServiceHelperUI
+class UIHelper
 {
     const NAME_KEY_CONFIG = 'ui';
 
@@ -12,12 +12,12 @@ class ServiceHelperUI
 
     const API_UI = 'api';
 
-    public static function isWebUI() : bool
+    public function isWebUI() : bool
     {
         return config(self::NAME_KEY_CONFIG) === self::WEB_UI;
     }
 
-    public static function isApiUI() : bool
+    public function isApiUI() : bool
     {
         return config(self::NAME_KEY_CONFIG) === self::API_UI;
     }

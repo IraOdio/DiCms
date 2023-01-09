@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\BussinessLayout\UserLayout\RegistrationLogic\Requests;
+namespace App\BussinessLayout\UserLayout\Requests;
 
 
 use Illuminate\Foundation\Http\FormRequest;

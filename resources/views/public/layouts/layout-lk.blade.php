@@ -72,6 +72,12 @@
                                 <li><a class="dropdown-item" href="{{ route('lk-right-role-post-view') }}">{{ $localization->message('navbar.right-role-posting') }}</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <form action="{{ route('logout-process-action') }}" method="POST">
+                                @csrf
+                                <button type="submit">Выйти из личного кабинета</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>

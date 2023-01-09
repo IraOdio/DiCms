@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\BussinessLayout\ZeroLayout\Logger\Abstracted;
+namespace App\CoreLayout\Logger\Abstracted;
 
 
 use Illuminate\Support\Facades\Log;
