@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
+use App\BussinessLayout\UserLayout\UserComponent;
 use App\CoreLayout\CoreComponent;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +16,7 @@ class LkController extends WebController
     protected string $bar_label = 'Lk Web Controller';
     public function logoutAction() : \Illuminate\Http\RedirectResponse
     {
-        Session::flush();
-
-        Auth::logout();
-
+        UserComponent::logoutProcessAction();
         return to_route('logout-message-view');
     }
     public function showLogoutView() : View

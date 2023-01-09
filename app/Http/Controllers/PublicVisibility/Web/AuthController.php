@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PublicVisibility\Web;
 
 
 use App\BussinessLayout\UserLayout\Requests\LoginRequest;
+use App\BussinessLayout\UserLayout\UserComponent;
 use App\CoreLayout\CoreComponent;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Foundation\Auth\User;
@@ -31,9 +32,7 @@ class AuthController extends WebController
 
         if(!Auth::validate($credentials)) return to_route('auth-failed-view')->withErrors(trans('auth.failed'));
 
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
-        Auth::login($user);
+        $user = UserComponent::authorizeProcessAction($credentials);
 
         return $this->authenticated($request,$user);
     }
