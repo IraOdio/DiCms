@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ChatComponent from "@/components/chat/ChatComponent";
+import ChatComponent from "@/Components/chat/ChatComponent";
 export default {
     name: "IndexPage",
     components:{

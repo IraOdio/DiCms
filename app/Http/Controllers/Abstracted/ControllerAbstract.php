@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Abstracted;
 
-use App\CoreLayout\UI\UIHelper;
+use App\CoreLayout\Logger\Abstracted\LoggerAbstract;
+use App\CoreLayout\UIManager\Abstracted\UIManagerAbstracted;
 use Illuminate\Routing\Controller as BaseController;
 
 abstract class ControllerAbstract extends BaseController
 {
-    public string $ui = 'abstract';
+    protected string $ui = 'abstract';
 
-    public function __construct()
+    public function __construct(protected LoggerAbstract $logger)
     {
-        config([UIHelper::NAME_KEY_CONFIG => $this->ui]);
+        config([UIManagerAbstracted::NAME_KEY_CONFIG => $this->ui]);
     }
 }

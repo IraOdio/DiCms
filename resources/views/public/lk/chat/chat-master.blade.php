@@ -5,5 +5,5 @@
 
         </div>
     </div>
-    <script src="{{ asset('frontend/applications/chat/bundle_development/chat-bundle.js') }}"></script>
+    <script src="{{ asset('frontend/applications/chat/bundle_development/chat-bundle.js?v='.md5(time())) }}"></script>
 @endsection

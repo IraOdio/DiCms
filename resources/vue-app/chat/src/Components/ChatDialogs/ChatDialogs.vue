@@ -1,13 +1,10 @@
 <template>
-    ChatComponent
+
 </template>
 
 <script>
 export default {
-    name: "ChatComponent",
-    setup (props){
-
-    }
+    name: "ChatDialogs"
 }
 </script>
 

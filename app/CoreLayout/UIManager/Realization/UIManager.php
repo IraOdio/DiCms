@@ -1,17 +1,13 @@
 <?php
 
 
-namespace App\CoreLayout\UI;
+namespace App\CoreLayout\UIManager\Realization;
 
 
-class UIHelper
+use App\CoreLayout\UIManager\Abstracted\UIManagerAbstracted;
+
+class UIManager extends UIManagerAbstracted
 {
-    const NAME_KEY_CONFIG = 'ui';
-
-    const WEB_UI = 'web';
-
-    const API_UI = 'api';
-
     public function isWebUI() : bool
     {
         return config(self::NAME_KEY_CONFIG) === self::WEB_UI;

@@ -20,7 +20,6 @@ Route::group([],function ($router){
         Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'showLkView'])->name('lk-view');
 
         // region Logout
-        Route::get('/logout',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'showLogoutView'])->name('logout-message-view');
         Route::post('/logout',[\App\Http\Controllers\PublicVisibility\Web\LkController::class,'logoutAction'])->name('logout-process-action');
         // endregion
 

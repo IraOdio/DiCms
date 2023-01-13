@@ -1,9 +1,11 @@
 <template>
-    <IndexPage></IndexPage>
+    <div class="container">
+        <IndexPage></IndexPage>
+    </div>
 </template>
 
 <script>
-import IndexPage from "@/pages/index/IndexPage";
+import IndexPage from "@/Pages/Index/IndexPage";
 
 export default {
   name: 'App',

@@ -5,37 +5,68 @@ namespace App\Http\Controllers\PublicVisibility\Web;
 
 
 use App\BussinessLayout\UserLayout\Requests\LoginRequest;
-use App\BussinessLayout\UserLayout\UserComponent;
-use App\CoreLayout\CoreComponent;
+
+use App\CoreLayout\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\CoreLayout\Logger\Abstracted\LoggerAbstract;
 use App\Http\Controllers\Abstracted\WebController;
+use Illuminate\Auth\AuthManager;
+use Illuminate\Contracts\Auth\Factory as AuthFactory;
+use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
+use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+
 
 class AuthController extends WebController
 {
     protected string $bar_label = "Auth Controller";
-    public function showAuthForm() : View
+
+    public function __construct(
+        DebugBarManagerAbstracted $debugBarManager,
+        LoggerAbstract $logger,
+        Redirector $redirector,
+        ViewFactory $viewFactory
+    )
     {
-        return view('public.auth.auth-form');
+        parent::__construct($logger,$debugBarManager, $redirector, $viewFactory);
     }
-    public function showAuthFailed() : View
+
+    public function showAuthForm(): View
     {
-        return view('public.auth.auth-failed');
+        if (Auth::check()) {
+            $user = Auth::user();
+            $this->debugBarManager->addMessage("Пользователь авторизован!",$this->bar_label);
+        } else {
+            $this->debugBarManager->addMessage('Пользователь не авторизован!',$this->bar_label);
+        }
+        return $this->viewFactory->make('public.auth.auth-form');
     }
-    public function loginAction(LoginRequest $request) : \Illuminate\Http\RedirectResponse
+
+    public function showAuthFailed(): View
+    {
+        return $this->viewFactory->make('public.auth.auth-failed');
+    }
+
+    public function loginAction(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
         $credentials = $request->getCredentials();
-        CoreComponent::getLogger("auth/master.log")->info("Получен запрос на авторизацию",[
+        $this->logger->rebuildLogger("auth/master.log")->info("Получен запрос на авторизацию", [
             'data' => $request->getCredentials()
         ]);
 
-        if(!Auth::validate($credentials)) return to_route('auth-failed-view')->withErrors(trans('auth.failed'));
+        if (!Auth::validate($credentials)) {
+            return $this->redirector->route('auth-failed-view')->withErrors(trans('auth.failed'));
+        }
 
-        $user = UserComponent::authorizeProcessAction($credentials);
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
-        return $this->authenticated($request,$user);
+        if ($user instanceof User) Auth::login($user);
+
+        return $this->authenticated($request, $user);
     }
+
     /**
      * Handle response after user authenticated
      *
@@ -44,8 +75,8 @@ class AuthController extends WebController
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function authenticated(LoginRequest $request,User $user) : \Illuminate\Http\RedirectResponse
+    protected function authenticated(LoginRequest $request, User $user): \Illuminate\Http\RedirectResponse
     {
-        return to_route('lk-view');
+        return $this->redirector->route('lk-view');
     }
 }
