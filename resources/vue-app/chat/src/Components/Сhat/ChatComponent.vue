@@ -1,13 +1,14 @@
 <template>
-    <ChatDialogComponent>
-    </ChatDialogComponent>
+    <ChatRandomDialog>
+    </ChatRandomDialog>
 </template>
 
 <script>
 import ChatDialogComponent from "@/Components/ChatDialog/ChatDialogComponent";
+import ChatRandomDialog from "@/Components/ChatRandomDialog/ChatRandomDialog";
 export default {
     name: "ChatComponent",
-    components: {ChatDialogComponent},
+    components: {ChatRandomDialog, ChatDialogComponent},
     setup (props){
 
     }
