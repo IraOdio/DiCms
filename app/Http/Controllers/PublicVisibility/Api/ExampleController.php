@@ -14,6 +14,20 @@ class ExampleController extends ApiController
         return $this->response_api(['example-json-data-response' => [1,2,4,8]]);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/example/resources/",
+     *      operationId="getExampleResources",
+     *      tags={"ExampleResources"},
+     *      summary="Get example resources",
+     *      description="Returns Get example resources",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(@OA\Property(property="id", type="integer", readOnly="true", example="1"))
+     *       ),
+     *     )
+     */
     public function exampleGetResources() : JsonResponse
     {
         $responseData = [
