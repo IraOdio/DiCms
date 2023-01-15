@@ -197,6 +197,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         \App\CoreLayout\Providers\CoreLayoutServiceProvider::class,
         \App\BussinessLayout\LocalizationLayout\Providers\LocalizationServiceProvider::class,
+        \App\BussinessLayout\ChatLayout\Providers\ChatServiceProvider::class,
 
     ],
 

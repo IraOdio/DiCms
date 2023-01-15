@@ -4,7 +4,6 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
-use App\BussinessLayout\UserLayout\EloquentModels\User;
 use App\BussinessLayout\UserLayout\Requests\RegistrationRequest;
 use App\CoreLayout\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
 use App\CoreLayout\Logger\Abstracted\LoggerAbstract;
@@ -13,7 +12,9 @@ use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Foundation\Auth\User;
 
 class RegistrationController extends WebController
 {
@@ -40,10 +41,15 @@ class RegistrationController extends WebController
             'password' => $request->validated('password')
         ]);
 
-        $user = \Illuminate\Foundation\Auth\User::create($request->validated());
+        $user = new User();
+        $user->name = $request->validated('name');
+        $user->email = $request->validated('email');
+        $user->username = $request->validated('username');
+        $user->password = $request->validated('password');
+        $user->save();
         auth()->login($user);
 
-        return to_route('registration-success');
+        return to_route('registration-success-view');
     }
 
 
