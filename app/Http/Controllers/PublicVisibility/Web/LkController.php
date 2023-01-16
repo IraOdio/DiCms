@@ -4,8 +4,8 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
-use App\CoreLayout\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
-use App\CoreLayout\Logger\Abstracted\LoggerAbstract;
+use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Routing\Redirector;

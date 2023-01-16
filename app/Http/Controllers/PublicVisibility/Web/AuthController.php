@@ -4,10 +4,11 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
-use App\BussinessLayout\UserLayout\Requests\LoginRequest;
+use App\BusinessLayer\User\Events\onAfterLoginUserEvent;
+use App\BusinessLayer\User\Requests\LoginRequest;
 
-use App\CoreLayout\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
-use App\CoreLayout\Logger\Abstracted\LoggerAbstract;
+use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
@@ -63,6 +64,8 @@ class AuthController extends WebController
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         if ($user instanceof User) Auth::login($user);
+
+        onAfterLoginUserEvent::dispatch($user);
 
         return $this->authenticated($request, $user);
     }

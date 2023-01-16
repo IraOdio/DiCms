@@ -4,9 +4,10 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
-use App\BussinessLayout\UserLayout\Requests\RegistrationRequest;
-use App\CoreLayout\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
-use App\CoreLayout\Logger\Abstracted\LoggerAbstract;
+use App\BusinessLayer\User\Abstracted\UserManagerAbstracted;
+use App\BusinessLayer\User\Requests\RegistrationRequest;
+use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\Response;
@@ -20,7 +21,11 @@ class RegistrationController extends WebController
 {
     protected string $bar_label = "Registration Controller";
 
-    public function __construct(LoggerAbstract $logger, DebugBarManagerAbstracted $debugBarManager, Redirector $redirector, ViewFactory $viewFactory)
+    public function __construct(LoggerAbstract $logger,
+                                DebugBarManagerAbstracted $debugBarManager,
+                                Redirector $redirector,
+                                ViewFactory $viewFactory,
+                                protected UserManagerAbstracted $userManager)
     {
         parent::__construct($logger,  $debugBarManager, $redirector, $viewFactory);
 
@@ -28,11 +33,11 @@ class RegistrationController extends WebController
 
     public function showRegForm() : View
     {
-        return view('public.registration.registration-form');
+        return $this->viewFactory->make('public.registration.registration-form');
     }
     public function showSuccessViewAction() : View
     {
-        return view('public.registration.success');
+        return $this->viewFactory->make('public.registration.success');
     }
     public function registrationAction(RegistrationRequest $request) : \Illuminate\Http\RedirectResponse
     {
@@ -41,13 +46,14 @@ class RegistrationController extends WebController
             'password' => $request->validated('password')
         ]);
 
-        $user = new User();
-        $user->name = $request->validated('name');
-        $user->email = $request->validated('email');
-        $user->username = $request->validated('username');
-        $user->password = $request->validated('password');
-        $user->save();
-        auth()->login($user);
+        $userData = [];
+        $userData['name'] = $request->validated('name');
+        $userData['email'] = $request->validated('email');
+        $userData['username'] = $request->validated('username');
+        $userData['password'] = $request->validated('password');
+        $user = $this->userManager->createUser($userData);
+        $this->userManager->loginUser($user);
+
 
         return to_route('registration-success-view');
     }

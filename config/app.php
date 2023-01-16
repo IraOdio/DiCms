@@ -195,9 +195,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\CoreLayout\Providers\CoreLayoutServiceProvider::class,
-        \App\BussinessLayout\LocalizationLayout\Providers\LocalizationServiceProvider::class,
-        \App\BussinessLayout\ChatLayout\Providers\ChatServiceProvider::class,
+        \App\BaseLayer\Providers\BaseLayerServiceProvider::class,
+        \App\BusinessLayer\Localization\Providers\LocalizationServiceProvider::class,
+        \App\BusinessLayer\Chat\Providers\ChatServiceProvider::class,
+        \App\BusinessLayer\User\Providers\UserServiceProvider::class
 
     ],
 
