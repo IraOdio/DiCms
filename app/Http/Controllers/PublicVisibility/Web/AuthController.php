@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
+use App\BusinessLayer\User\Abstracted\UserManagerAbstracted;
 use App\BusinessLayer\User\Events\onAfterLoginUserEvent;
 use App\BusinessLayer\User\Requests\LoginRequest;
 
@@ -28,19 +29,20 @@ class AuthController extends WebController
         DebugBarManagerAbstracted $debugBarManager,
         LoggerAbstract $logger,
         Redirector $redirector,
-        ViewFactory $viewFactory
+        ViewFactory $viewFactory,
+        protected UserManagerAbstracted $userManager
     )
     {
-        parent::__construct($logger,$debugBarManager, $redirector, $viewFactory);
+        parent::__construct($logger, $debugBarManager, $redirector, $viewFactory);
     }
 
     public function showAuthForm(): View
     {
         if (Auth::check()) {
             $user = Auth::user();
-            $this->debugBarManager->addMessage("Пользователь авторизован!",$this->bar_label);
+            $this->debugBarManager->addMessage("Пользователь авторизован!", $this->bar_label);
         } else {
-            $this->debugBarManager->addMessage('Пользователь не авторизован!',$this->bar_label);
+            $this->debugBarManager->addMessage('Пользователь не авторизован!', $this->bar_label);
         }
         return $this->viewFactory->make('public.auth.auth-form');
     }
@@ -57,28 +59,20 @@ class AuthController extends WebController
             'data' => $request->getCredentials()
         ]);
 
-        if (!Auth::validate($credentials)) {
-            return $this->redirector->route('auth-failed-view')->withErrors(trans('auth.failed'));
-        }
+        $attemptResult = $this->userManager->attemptLoginUserWithCredentials($credentials);
 
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
-        if ($user instanceof User) Auth::login($user);
-
-        onAfterLoginUserEvent::dispatch($user);
-
-        return $this->authenticated($request, $user);
+        return $this->authenticated($request);
     }
 
     /**
      * Handle response after user authenticated
      *
      * @param LoginRequest $request
-     * @param  $user
+     *
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function authenticated(LoginRequest $request, User $user): \Illuminate\Http\RedirectResponse
+    protected function authenticated(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
         return $this->redirector->route('lk-view');
     }

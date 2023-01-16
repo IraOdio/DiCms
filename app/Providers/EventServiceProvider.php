@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\BusinessLayer\Notifications\Listeners\NotificationTelegramListener;
-use App\BusinessLayer\User\Events\onAfterLoginUserEvent;
+
+use App\BusinessLayer\Notifications\Subscribers\NotificationUserEventSubscriber;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,9 +19,16 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        onAfterLoginUserEvent::class => [
-            NotificationTelegramListener::class
-        ]
+
+    ];
+
+    /**
+     * Классы подписчиков для регистрации.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        NotificationUserEventSubscriber::class
     ];
 
     /**
