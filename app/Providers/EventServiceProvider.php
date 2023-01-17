@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\BusinessLayer\Chat\Subscribers\ChatEventSubscriber;
 use App\BusinessLayer\Notifications\Listeners\NotificationTelegramListener;
 
 use App\BusinessLayer\Notifications\Subscribers\NotificationUserEventSubscriber;
@@ -28,7 +29,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $subscribe = [
-        NotificationUserEventSubscriber::class
+        NotificationUserEventSubscriber::class, ChatEventSubscriber::class
     ];
 
     /**

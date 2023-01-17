@@ -10,5 +10,6 @@ namespace App\BaseLayer\Events\Interfaces;
  */
 interface EventBaseInterface
 {
+    public function getEventData() : array;
 
 }

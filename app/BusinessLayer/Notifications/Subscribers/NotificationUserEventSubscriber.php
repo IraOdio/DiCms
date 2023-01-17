@@ -36,7 +36,7 @@ class NotificationUserEventSubscriber
      * @param  \Illuminate\Events\Dispatcher  $events
      * @return void
      */
-    public function subscribe($events)
+    public function subscribe(\Illuminate\Events\Dispatcher $events)
     {
         $events->listen(
             Login::class,

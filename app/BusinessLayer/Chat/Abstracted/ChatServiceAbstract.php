@@ -11,6 +11,11 @@ use App\BusinessLayer\Chat\EloquentModels\ChatMessagesDialog;
 use App\BusinessLayer\Chat\EloquentModels\ChatMessagesUser;
 use Illuminate\Foundation\Auth\User;
 
+/**
+ * Выполняет ответственность - операции в БД и диспатчит соответствующие ивенты
+ * Class ChatServiceAbstract
+ * @package App\BusinessLayer\Chat\Abstracted
+ */
 abstract class ChatServiceAbstract
 {
     public function __construct(
