@@ -202,6 +202,7 @@ return [
         \App\BusinessLayer\User\Providers\UserServiceProvider::class,
         \App\BusinessLayer\Messengers\Providers\MessengerServiceProvider::class,
         \App\BusinessLayer\Notifications\Providers\NotificationsServiceProvider::class,
+        \App\BusinessLayer\Shop\Providers\ShopServiceProvider::class,
 
     ],
 

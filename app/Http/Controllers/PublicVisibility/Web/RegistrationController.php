@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
-use App\BusinessLayer\User\Abstracted\UserManagerAbstracted;
+use App\BusinessLayer\User\Interfaces\UserManagerInterface;
 use App\BusinessLayer\User\Requests\RegistrationRequest;
 use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
 use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
@@ -25,7 +25,7 @@ class RegistrationController extends WebController
                                 DebugBarManagerAbstracted $debugBarManager,
                                 Redirector $redirector,
                                 ViewFactory $viewFactory,
-                                protected UserManagerAbstracted $userManager)
+                                protected UserManagerInterface $userManager)
     {
         parent::__construct($logger,  $debugBarManager, $redirector, $viewFactory);
 

@@ -6,6 +6,7 @@ use App\BusinessLayer\Chat\Subscribers\ChatEventSubscriber;
 use App\BusinessLayer\Notifications\Listeners\NotificationTelegramListener;
 
 use App\BusinessLayer\Notifications\Subscribers\NotificationUserEventSubscriber;
+use App\BusinessLayer\Shop\Subscribers\ShopEventSubscriber;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -29,7 +30,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $subscribe = [
-        NotificationUserEventSubscriber::class, ChatEventSubscriber::class
+        NotificationUserEventSubscriber::class, ChatEventSubscriber::class, ShopEventSubscriber::class
     ];
 
     /**

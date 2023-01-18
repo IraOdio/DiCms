@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ChatLayer;
+namespace Chat;
 
 
 use App\BusinessLayer\Chat\Abstracted\ChatServiceAbstract;

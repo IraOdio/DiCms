@@ -4,10 +4,8 @@
 namespace App\Http\Controllers\PublicVisibility\Web;
 
 
-use App\BusinessLayer\User\Abstracted\UserManagerAbstracted;
-use App\BusinessLayer\User\Events\onAfterLoginUserEvent;
+use App\BusinessLayer\User\Interfaces\UserManagerInterface;
 use App\BusinessLayer\User\Requests\LoginRequest;
-
 use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
 use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
 use App\Http\Controllers\Abstracted\WebController;
@@ -30,7 +28,7 @@ class AuthController extends WebController
         LoggerAbstract $logger,
         Redirector $redirector,
         ViewFactory $viewFactory,
-        protected UserManagerAbstracted $userManager
+        protected UserManagerInterface $userManager
     )
     {
         parent::__construct($logger, $debugBarManager, $redirector, $viewFactory);
