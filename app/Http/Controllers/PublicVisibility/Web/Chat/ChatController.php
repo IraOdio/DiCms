@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\PublicVisibility\Web;
+namespace App\Http\Controllers\PublicVisibility\Web\Chat;
 
 
 use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;

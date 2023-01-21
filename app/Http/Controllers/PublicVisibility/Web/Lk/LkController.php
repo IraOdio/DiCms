@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\PublicVisibility\Web;
+namespace App\Http\Controllers\PublicVisibility\Web\Lk;
 
 
 use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;

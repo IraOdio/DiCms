@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\PublicVisibility\Web;
+namespace App\Http\Controllers\PublicVisibility\Web\RightRole;
 
 
 use App\Http\Controllers\Abstracted\WebController;
