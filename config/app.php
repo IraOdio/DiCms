@@ -196,13 +196,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // --
-        \App\BaseLayer\Providers\BaseLayerServiceProvider::class,
-        \App\BusinessLayer\Localization\Providers\LocalizationServiceProvider::class,
-        \App\BusinessLayer\Chat\Providers\ChatServiceProvider::class,
-        \App\BusinessLayer\User\Providers\UserServiceProvider::class,
-        \App\BusinessLayer\Messengers\Providers\MessengerServiceProvider::class,
-        \App\BusinessLayer\Notifications\Providers\NotificationsServiceProvider::class,
-        \App\BusinessLayer\Shop\Providers\ShopServiceProvider::class,
 
     ],
 
