@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Abstracted;
 
-use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
-use App\BaseLayer\UIManager\Abstracted\UIManagerAbstracted;
+use App\Services\Logger\Abstracted\LoggerAbstract;
+use App\Services\UIManager\Abstracted\UIManagerAbstracted;
 use Illuminate\Routing\Controller as BaseController;
 
 /**

@@ -4,10 +4,10 @@
 namespace App\Http\Controllers\PublicVisibility\Web\User;
 
 
-use App\BusinessLayer\User\Interfaces\UserManagerInterface;
-use App\BusinessLayer\User\Requests\RegistrationRequest;
-use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
-use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
+use App\Services\User\Interfaces\UserManagerInterface;
+use App\Services\User\Requests\RegistrationRequest;
+use App\Services\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\Services\Logger\Abstracted\LoggerAbstract;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\Response;

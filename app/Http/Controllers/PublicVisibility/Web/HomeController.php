@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\PublicVisibility\Web;
 
-use App\BusinessLayer\Shop\Realization\Product\Product;
+use App\Services\Shop\Realization\Product\Product;
 
-use App\BusinessLayer\Shop\Realization\Product\ProductCollection;
+use App\Services\Shop\Realization\Product\ProductCollection;
 use App\Http\Controllers\Abstracted\WebController;
 
 class HomeController extends WebController

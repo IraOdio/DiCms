@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Abstracted;
 
 
-use App\BaseLayer\UIManager\Abstracted\UIManagerAbstracted;
+use App\Services\UIManager\Abstracted\UIManagerAbstracted;
 use Illuminate\Http\JsonResponse;
 
 abstract class ApiController extends ControllerAbstract

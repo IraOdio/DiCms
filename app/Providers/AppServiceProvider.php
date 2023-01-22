@@ -2,30 +2,30 @@
 
 namespace App\Providers;
 
-use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
-use App\BaseLayer\DebugBarManager\Realization\DebugBarManager;
-use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
-use App\BaseLayer\Logger\Realization\DefaultLogger;
-use App\BaseLayer\UIManager\Abstracted\UIManagerAbstracted;
-use App\BaseLayer\UIManager\Realization\UIManager;
-use App\BusinessLayer\Chat\Abstracted\ChatApiAbstract;
-use App\BusinessLayer\Chat\Abstracted\ChatClientAbstract;
-use App\BusinessLayer\Chat\Abstracted\ChatServiceAbstract;
-use App\BusinessLayer\Chat\Realization\ChatClient;
-use App\BusinessLayer\Chat\Realization\ChatNullApi;
-use App\BusinessLayer\Chat\Realization\ChatService;
-use App\BusinessLayer\Localization\Abstracted\LocalizationAbstract;
-use App\BusinessLayer\Localization\Realization\LocalizationMaster;
-use App\BusinessLayer\Messengers\Abstracted\Telegram\TelegramApiAbstracted;
-use App\BusinessLayer\Messengers\Abstracted\Telegram\TelegramClientAbstracted;
-use App\BusinessLayer\Messengers\Realization\Telegram\TelegramClient;
-use App\BusinessLayer\Messengers\Realization\Telegram\TelegramNullApi;
-use App\BusinessLayer\Notifications\Abstracted\NotificationManagerAbstracted;
-use App\BusinessLayer\Notifications\Realization\NotificationManager;
-use App\BusinessLayer\Shop\Interfaces\ShopManager\ShopManagerInterface;
-use App\BusinessLayer\Shop\Realization\ShopManager\ShopManager;
-use App\BusinessLayer\User\Interfaces\UserManagerInterface;
-use App\BusinessLayer\User\Realization\UserManager;
+use App\Services\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\Services\DebugBarManager\Realization\DebugBarManager;
+use App\Services\Logger\Abstracted\LoggerAbstract;
+use App\Services\Logger\Realization\DefaultLogger;
+use App\Services\UIManager\Abstracted\UIManagerAbstracted;
+use App\Services\UIManager\Realization\UIManager;
+use App\Services\Chat\Abstracted\ChatApiAbstract;
+use App\Services\Chat\Abstracted\ChatClientAbstract;
+use App\Services\Chat\Abstracted\ChatServiceAbstract;
+use App\Services\Chat\Realization\ChatClient;
+use App\Services\Chat\Realization\ChatNullApi;
+use App\Services\Chat\Realization\ChatService;
+use App\Services\Localization\Abstracted\LocalizationAbstract;
+use App\Services\Localization\Realization\LocalizationMaster;
+use App\Services\Messengers\Abstracted\Telegram\TelegramApiAbstracted;
+use App\Services\Messengers\Abstracted\Telegram\TelegramClientAbstracted;
+use App\Services\Messengers\Realization\Telegram\TelegramClient;
+use App\Services\Messengers\Realization\Telegram\TelegramNullApi;
+use App\Services\Notifications\Abstracted\NotificationManagerAbstracted;
+use App\Services\Notifications\Realization\NotificationManager;
+use App\Services\Shop\Interfaces\ShopManager\ShopManagerInterface;
+use App\Services\Shop\Realization\ShopManager\ShopManager;
+use App\Services\User\Interfaces\UserManagerInterface;
+use App\Services\User\Realization\UserManager;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -72,7 +72,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->isLocal()) {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 
     /**

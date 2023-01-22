@@ -4,9 +4,9 @@
 namespace App\Http\Controllers\PublicVisibility\Web\Shop;
 
 
-use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
-use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
-use App\BusinessLayer\Shop\Abstracted\ShopManager\ShopManagerAbstract;
+use App\Services\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\Services\Logger\Abstracted\LoggerAbstract;
+use App\Services\Shop\Abstracted\ShopManager\ShopManagerAbstract;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Routing\Redirector;

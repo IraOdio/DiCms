@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\BusinessLayer\Chat\Subscribers\ChatEventSubscriber;
-use App\BusinessLayer\Notifications\Listeners\NotificationTelegramListener;
+use App\Services\Chat\Subscribers\ChatEventSubscriber;
+use App\Services\Notifications\Listeners\NotificationTelegramListener;
 
-use App\BusinessLayer\Notifications\Subscribers\NotificationUserEventSubscriber;
-use App\BusinessLayer\Shop\Subscribers\ShopEventSubscriber;
+use App\Services\Notifications\Subscribers\NotificationUserEventSubscriber;
+use App\Services\Shop\Subscribers\ShopEventSubscriber;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;

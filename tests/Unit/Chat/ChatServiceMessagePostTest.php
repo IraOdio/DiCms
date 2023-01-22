@@ -4,11 +4,11 @@
 namespace Chat;
 
 
-use App\BusinessLayer\Chat\Abstracted\ChatServiceAbstract;
-use App\BusinessLayer\Chat\EloquentModels\ChatDialogs;
-use App\BusinessLayer\Chat\Exceptions\ChatMessagePostNotValidDialogException;
-use App\BusinessLayer\Chat\Exceptions\ChatMessagePostNotValidUserException;
-use App\BusinessLayer\User\EloquentModels\User;
+use App\Services\Chat\Abstracted\ChatServiceAbstract;
+use App\Services\Chat\EloquentModels\ChatDialogs;
+use App\Services\Chat\Exceptions\ChatMessagePostNotValidDialogException;
+use App\Services\Chat\Exceptions\ChatMessagePostNotValidUserException;
+use App\Services\User\EloquentModels\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Tests\TestCase;

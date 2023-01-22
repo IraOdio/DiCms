@@ -4,10 +4,10 @@
 namespace App\Http\Controllers\PublicVisibility\Web\User;
 
 
-use App\BusinessLayer\User\Interfaces\UserManagerInterface;
-use App\BusinessLayer\User\Requests\LoginRequest;
-use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
-use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
+use App\Services\User\Interfaces\UserManagerInterface;
+use App\Services\User\Requests\LoginRequest;
+use App\Services\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\Services\Logger\Abstracted\LoggerAbstract;
 use App\Http\Controllers\Abstracted\WebController;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;

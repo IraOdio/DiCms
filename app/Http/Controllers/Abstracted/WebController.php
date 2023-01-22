@@ -4,10 +4,10 @@
 namespace App\Http\Controllers\Abstracted;
 
 
-use App\BaseLayer\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
-use App\BaseLayer\DebugBarManager\Realization\DebugBarManager;
-use App\BaseLayer\Logger\Abstracted\LoggerAbstract;
-use App\BaseLayer\UIManager\Abstracted\UIManagerAbstracted;
+use App\Services\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
+use App\Services\DebugBarManager\Realization\DebugBarManager;
+use App\Services\Logger\Abstracted\LoggerAbstract;
+use App\Services\UIManager\Abstracted\UIManagerAbstracted;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
