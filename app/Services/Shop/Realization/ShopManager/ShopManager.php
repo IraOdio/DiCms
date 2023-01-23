@@ -17,7 +17,7 @@ class ShopManager extends ShopManagerAbstract
 
     #[Pure] public function createOrder(ProductCollectionInterface $productCollection): OrderInterface
     {
-        $order = new Order();
+
     }
 
     public function getOrderFromId(int $orderId): OrderInterface

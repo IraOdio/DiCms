@@ -4,7 +4,7 @@
 namespace App\Services\Notifications\Listeners;
 
 
-use App\Services\Events\Interfaces\EventBaseInterface;
+use App\Events\Interfaces\EventBaseInterface;
 
 class NotificationTelegramListener
 {

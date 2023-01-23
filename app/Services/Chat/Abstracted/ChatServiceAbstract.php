@@ -4,27 +4,27 @@
 namespace App\Services\Chat\Abstracted;
 
 
-use App\Services\Chat\EloquentModels\ChatDialogs;
-use App\Services\Chat\EloquentModels\ChatDialogsUser;
-use App\Services\Chat\EloquentModels\ChatMessages;
-use App\Services\Chat\EloquentModels\ChatMessagesDialog;
-use App\Services\Chat\EloquentModels\ChatMessagesUser;
-use Illuminate\Foundation\Auth\User;
+use App\Services\Chat\Interfaces\Repositories\ChatDialogsRepositoryInterface;
+use App\Services\Chat\Interfaces\Repositories\ChatDialogsUserRepositoryInterface;
+use App\Services\Chat\Interfaces\Repositories\ChatMessagesDialogRepositoryInterface;
+use App\Services\Chat\Interfaces\Repositories\ChatMessagesRepositoryInterface;
+use App\Services\Chat\Interfaces\Repositories\ChatMessagesUserRepositoryInterface;
+use App\Services\User\Interfaces\UserRepositoryInterface;
 
 /**
- * Выполняет ответственность - операции в БД и диспатчит соответствующие ивенты
+ * Выполняет ответственность - операции в БД через репозитории и диспатчит соответствующие ивенты
  * Class ChatServiceAbstract
  * @package App\Services\Chat\Abstracted
  */
 abstract class ChatServiceAbstract
 {
     public function __construct(
-        protected ChatDialogs $chatDialogsEloquent,
-        protected ChatDialogsUser $chatDialogsUserEloquent,
-        protected ChatMessages $chatMessagesEloquent,
-        protected ChatMessagesDialog $chatMessagesDialogEloquent,
-        protected ChatMessagesUser $chatMessagesUserEloquent,
-        protected User $user,
+        protected UserRepositoryInterface $userRepository,
+        protected ChatDialogsRepositoryInterface $chatDialogsRepository,
+        protected ChatDialogsUserRepositoryInterface $chatDialogsUserRepository,
+        protected ChatMessagesRepositoryInterface $chatMessagesRepository,
+        protected ChatMessagesDialogRepositoryInterface $chatMessagesDialogRepository,
+        protected ChatMessagesUserRepositoryInterface $chatMessagesUserRepository,
     )
     {
 

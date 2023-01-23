@@ -16,29 +16,29 @@ class ChatService extends ChatServiceAbstract
 {
     public function chatMessagePostAction(string $message, int $userId, int $dialogId): int
     {
-        $dialogEloquent = $this->chatDialogsEloquent->where('id', $dialogId)->first();
-        if (!$dialogEloquent instanceof ChatDialogs){
+        $dialogArray = $this->chatDialogsRepository->findDialogFromId($dialogId);
+        if (empty($dialogArray)){
             return throw new ChatMessagePostNotValidDialogException("Dialog with id {$dialogId} not found!");
         }
-        $userEloquent = $this->user->where('id',$userId)->first();
-        if (!$userEloquent instanceof User){
+        $userArray = $this->userRepository->findUserFromId($userId);
+        if (empty($userArray)){
             return throw new ChatMessagePostNotValidUserException("User with id {$userId} not found!");
         }
 
-        $messageEloquent = $this->chatMessagesEloquent->create(['content' => $message]);
-        $messageDialogEloquent = $this->chatMessagesDialogEloquent->create(['message_id' => $messageEloquent->id, 'dialog_id' => $dialogId]);
-        $messageUserEloquent = $this->chatMessagesUserEloquent->create(['message_id' => $messageEloquent->id,'user_id' => $userId]);
+        $messageId = $this->chatMessagesRepository->create(['content' => $message]);
+        $messageDialogId = $this->chatMessagesDialogRepository->create(['message_id' => $messageId, 'dialog_id' => $dialogId]);
+        $messageUserId = $this->chatMessagesUserRepository->create(['message_id' => $messageId,'user_id' => $userId]);
 
         $eventData = [
             'message' => [
                 'content' => $message,
-                'id' => $messageEloquent->id
+                'id' => $messageId
             ],
             'dialog' => ['id' => $dialogId],
             'user' => ['id' => $userId]
         ];
         onAfterChatMessagePostEvent::dispatch($eventData);
 
-        return $messageEloquent->id;
+        return $messageId;
     }
 }
