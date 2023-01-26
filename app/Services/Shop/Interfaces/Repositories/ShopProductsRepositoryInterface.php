@@ -7,9 +7,9 @@ namespace App\Services\Shop\Interfaces\Repositories;
 interface ShopProductsRepositoryInterface
 {
     /**
-     * Создает запись в хранилище - возвращает идентификатор записи
+     * Create row in storage - return array data
      * @param array $data
-     * @return int
+     * @return array
      */
-    public function create(array $data) : int;
+    public function create(array $data) : array;
 }

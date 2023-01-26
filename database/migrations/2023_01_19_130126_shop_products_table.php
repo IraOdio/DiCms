@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('shop_products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('price');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

@@ -19,9 +19,13 @@ use App\Services\Logger\Realization\DefaultLogger;
 use App\Services\Shop\Interfaces\Repositories\ShopOrderProductRepositoryInterface;
 use App\Services\Shop\Interfaces\Repositories\ShopOrdersRepositoryInterface;
 use App\Services\Shop\Interfaces\Repositories\ShopProductsRepositoryInterface;
+use App\Services\Shop\Interfaces\ShopManager\ShopManagerOrderInterface;
+use App\Services\Shop\Interfaces\ShopManager\ShopManagerProductInterface;
 use App\Services\Shop\Realization\Repositories\ShopOrderProductRepository;
 use App\Services\Shop\Realization\Repositories\ShopOrdersRepository;
 use App\Services\Shop\Realization\Repositories\ShopProductsRepository;
+use App\Services\Shop\Realization\ShopManager\ShopManagerOrder;
+use App\Services\Shop\Realization\ShopManager\ShopManagerProduct;
 use App\Services\UIManager\Abstracted\UIManagerAbstracted;
 use App\Services\UIManager\Realization\UIManager;
 use App\Services\Chat\Abstracted\ChatApiAbstract;
@@ -38,8 +42,6 @@ use App\Services\Messengers\Realization\Telegram\TelegramClient;
 use App\Services\Messengers\Realization\Telegram\TelegramNullApi;
 use App\Services\Notifications\Abstracted\NotificationManagerAbstracted;
 use App\Services\Notifications\Realization\NotificationManager;
-use App\Services\Shop\Interfaces\ShopManager\ShopManagerInterface;
-use App\Services\Shop\Realization\ShopManager\ShopManager;
 use App\Services\User\Interfaces\UserManagerInterface;
 use App\Services\User\Interfaces\UserRepositoryInterface;
 use App\Services\User\Realization\Repositories\UserRepository;
@@ -50,10 +52,11 @@ class AppServiceProvider extends ServiceProvider
 {
     public $bindings = [
         // region Shop
-        ShopManagerInterface::class => ShopManager::class,
         ShopProductsRepositoryInterface::class => ShopProductsRepository::class,
         ShopOrdersRepositoryInterface::class => ShopOrdersRepository::class,
         ShopOrderProductRepositoryInterface::class => ShopOrderProductRepository::class,
+        ShopManagerProductInterface::class => ShopManagerProduct::class,
+        ShopManagerOrderInterface::class => ShopManagerOrder::class,
         // endregion
 
         // region Messenger

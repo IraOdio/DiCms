@@ -19,6 +19,6 @@ class UserRepository extends UserRepositoryAbstracted implements UserRepositoryI
 
     public function findUserFromId(int $userId): array
     {
-        return $this->startConditions()->find($userId)?->toArray() ?? [];
+        return $this->startConditions()->activeUser()->find($userId)?->toArray() ?? [];
     }
 }

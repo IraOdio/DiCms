@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('shop_orders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('isApproved')->default(false); // получено ли одобрение
-            $table->boolean('isReady')->default(false); // оформлен ли заказ
+            $table->timestamp('approved_at')->nullable(); // дата получения одобрения заказа
+            $table->timestamp('ready_at')->nullable(); // дата перехода заказ в статус "оформлен ли"
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

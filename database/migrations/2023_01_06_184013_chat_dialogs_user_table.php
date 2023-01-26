@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('dialog_id');
-            $table->boolean('isKicked')->default(false);
             $table->timestamps();
+            $table->timestamp('kicked_at')->nullable(); // дата исключения юзера из диалога
         });
     }
 

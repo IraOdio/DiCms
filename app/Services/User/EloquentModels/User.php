@@ -3,6 +3,7 @@
 namespace App\Services\User\EloquentModels;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,5 +50,10 @@ class User extends Authenticatable
         'name' => 'noname123',
         'active' => true
     ];
+
+    public function scopeActiveUser(Builder $query) : Builder
+    {
+        return $query->where('deleted_at','=',null); // пользователь считается активным, если поле deleted_at содержит значение null
+    }
 
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('manager_right_role');
             $table->boolean('user_right_role');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

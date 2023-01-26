@@ -19,6 +19,6 @@ class ChatDialogsRepository extends ChatRepositoryAbstract implements ChatDialog
 
     public function findDialogFromId(int $dialogId): array
     {
-        return $this->startConditions()->find($dialogId)?->toArray() ?? [];
+        return $this->startConditions()->activeDialog()->find($dialogId)?->toArray() ?? [];
     }
 }

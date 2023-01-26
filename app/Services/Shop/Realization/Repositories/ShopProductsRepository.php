@@ -16,4 +16,9 @@ class ShopProductsRepository extends ShopRepositoryAbstract implements ShopProdu
     {
         return new ShopProducts();
     }
+
+    public function create(array $data): array
+    {
+        // TODO: Implement create() method.
+    }
 }

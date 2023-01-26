@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('content');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

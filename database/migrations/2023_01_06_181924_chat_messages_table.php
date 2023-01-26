@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('chat_messages', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->boolean('isRemoved')->default(false);
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
