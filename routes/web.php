@@ -47,6 +47,11 @@ Route::group([],function ($router){
         Route::post('/register',[\App\Http\Controllers\PublicVisibility\Web\User\RegistrationController::class,'registrationAction'])->name('registration-process-action');
     });
 
+    Route::group(['prefix' => 'blog'],function (){
+        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\Blog\BlogPostController::class,'experiment']);
+    });
+
+
 });
 
 Route::group(['prefix' => 'adminka'],function ($router){

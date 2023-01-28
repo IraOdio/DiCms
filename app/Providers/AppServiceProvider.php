@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Services\Blog\Interfaces\Repositories\BlogCategoryRepositoryInterface;
+use App\Services\Blog\Interfaces\Repositories\BlogCommentRepositoryInterface;
+use App\Services\Blog\Interfaces\Repositories\BlogPostRepositoryInterface;
+use App\Services\Blog\Repositories\Eloquent\BlogCategoryRepositoryElo;
+use App\Services\Blog\Repositories\Eloquent\BlogCommentRepositoryElo;
+use App\Services\Blog\Repositories\Eloquent\BlogPostRepositoryElo;
 use App\Services\Chat\Interfaces\Repositories\ChatDialogsRepositoryInterface;
 use App\Services\Chat\Interfaces\Repositories\ChatDialogsUserRepositoryInterface;
 use App\Services\Chat\Interfaces\Repositories\ChatMessagesDialogRepositoryInterface;
@@ -92,6 +98,13 @@ class AppServiceProvider extends ServiceProvider
         DebugBarManagerAbstracted::class => DebugBarManager::class,
         LoggerAbstract::class => DefaultLogger::class,
         UIManagerAbstracted::class => UIManager::class,
+        // endregion
+
+        // region Blog
+        BlogPostRepositoryInterface::class => BlogPostRepositoryElo::class,
+        BlogCategoryRepositoryInterface::class => BlogCategoryRepositoryElo::class,
+        BlogCommentRepositoryInterface::class => BlogCommentRepositoryElo::class
+
         // endregion
     ];
 
