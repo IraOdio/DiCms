@@ -13,6 +13,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogPostRepositoryElo extends RepositoryBaseAbstracted implements BlogPostRepositoryInterface
 {
+    public function createPost(PostAbstract $post) : PostAbstract
+    {
+
+    }
+
     public function findPostById(int $id) : array
     {
         return $this->startConditions()->find($id)?->toArray() ?? [];

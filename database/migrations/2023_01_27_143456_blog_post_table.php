@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('blog_post', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
+            // $table->foreignId('category_id')->references('id')->on('blog_category');
+            $table->string('preview_img_src')->nullable();
             $table->string('title',50);
             $table->text('short_content_raw')->nullable();
             $table->text('content_raw');

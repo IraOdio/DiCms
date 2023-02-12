@@ -1,4 +1,4 @@
-@inject('localization','App\BusinessLayer\Localization\Abstracted\LocalizationAbstract')
+@inject('localization','App\Services\Localization\Abstracted\LocalizationAbstract')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>

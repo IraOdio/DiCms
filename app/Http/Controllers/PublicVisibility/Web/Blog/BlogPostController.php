@@ -4,10 +4,11 @@
 namespace App\Http\Controllers\PublicVisibility\Web\Blog;
 
 use App\Http\Controllers\Abstracted\WebController;
-use App\Services\Blog\Interfaces\Repositories\BlogPostRepositoryInterface;
+use App\Services\Blog\Abstracted\BlogServiceAbstract;
 use App\Services\DebugBarManager\Abstracted\DebugBarManagerAbstracted;
 use App\Services\Logger\Abstracted\LoggerAbstract;
 use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 
 class BlogPostController extends WebController
@@ -18,14 +19,44 @@ class BlogPostController extends WebController
                                 DebugBarManagerAbstracted $debugBarManager,
                                 Redirector $redirector,
                                 ViewFactory $viewFactory,
-                                BlogPostRepositoryInterface $blogPostRepository
+                                BlogServiceAbstract $blogService
     )
     {
         parent::__construct($logger, $debugBarManager, $redirector, $viewFactory);
     }
 
-    public function experiment()
+    public function showIndexBlogView(Request $request)
     {
-        return $this->viewFactory->make('public.blog.blog-master');
+        return $this->viewFactory->make('public.blog.post.blog-post-list');
     }
+
+    public function showCreateBlogPostView(Request $request)
+    {
+        return $this->viewFactory->make('public.blog.post.blog-post-create');
+    }
+
+    public function showUpdateBlogPostView(Request $request)
+    {
+        return $this->viewFactory->make('public.blog.post.blog-post-update');
+    }
+
+    public function createBlogPostAction(Request $request)
+    {
+        $data = $request->all();
+        $file = $request->file('post-preview-img');
+
+        return response()->json();
+    }
+
+    public function updateBlogPostAction(Request $request)
+    {
+
+    }
+
+    public function deleteBlogPostAction(Request $request)
+    {
+
+    }
+
+
 }

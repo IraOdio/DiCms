@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('chat_messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('content');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

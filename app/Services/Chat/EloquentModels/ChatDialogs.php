@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Services\Chat\EloquentModels\ChatDialogs
+ *
+ * @method static Builder|ChatDialogs activeDialog()
+ * @method static \Database\Factories\Services\Chat\EloquentModels\ChatDialogsFactory factory(...$parameters)
+ * @method static Builder|ChatDialogs newModelQuery()
+ * @method static Builder|ChatDialogs newQuery()
+ * @method static Builder|ChatDialogs query()
+ * @mixin \Eloquent
+ */
 class ChatDialogs extends Model
 {
     use HasFactory;

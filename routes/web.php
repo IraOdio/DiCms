@@ -48,7 +48,12 @@ Route::group([],function ($router){
     });
 
     Route::group(['prefix' => 'blog'],function (){
-        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\Blog\BlogPostController::class,'experiment']);
+        Route::get('/',[\App\Http\Controllers\PublicVisibility\Web\Blog\BlogPostController::class,'showIndexBlogView'])->name('blog-master-view');
+        Route::get('/create',[\App\Http\Controllers\PublicVisibility\Web\Blog\BlogPostController::class,'showCreateBlogPostView'])->name('blog-post-create-form-view');
+        Route::get('/update',[\App\Http\Controllers\PublicVisibility\Web\Blog\BlogPostController::class,'showUpdateBlogPostView'])->name('blog-post-update-form-view');
+        Route::post('/create',[\App\Http\Controllers\PublicVisibility\Web\Blog\BlogPostController::class,'createBlogPostAction'])->name('blog-post-create-action');
+        Route::patch('/update',[\App\Http\Controllers\PublicVisibility\Web\Blog\BlogPostController::class,'updateBlogPostAction'])->name('blog-post-update-action');
+        Route::delete('/delete',[\App\Http\Controllers\PublicVisibility\Web\Blog\BlogPostController::class,'deleteBlogPostAction'])->name('blog-post-delete-action');
     });
 
 

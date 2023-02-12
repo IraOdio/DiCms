@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Services\Blog\Abstracted\BlogServiceAbstract;
 use App\Services\Blog\Interfaces\Repositories\BlogCategoryRepositoryInterface;
 use App\Services\Blog\Interfaces\Repositories\BlogCommentRepositoryInterface;
 use App\Services\Blog\Interfaces\Repositories\BlogPostRepositoryInterface;
+use App\Services\Blog\Realization\Master\BlogServiceMaster;
 use App\Services\Blog\Repositories\Eloquent\BlogCategoryRepositoryElo;
 use App\Services\Blog\Repositories\Eloquent\BlogCommentRepositoryElo;
 use App\Services\Blog\Repositories\Eloquent\BlogPostRepositoryElo;
@@ -87,7 +89,6 @@ class AppServiceProvider extends ServiceProvider
         ChatDialogsUserRepositoryInterface::class => ChatDialogsUserRepository::class,
         ChatMessagesDialogRepositoryInterface::class => ChatMessagesDialogRepository::class,
         ChatMessagesRepositoryInterface::class => ChatMessagesRepository::class,
-        ChatMessagesUserRepositoryInterface::class => ChatMessagesUserRepository::class,
         // endregion
 
         // region Localization
@@ -103,8 +104,8 @@ class AppServiceProvider extends ServiceProvider
         // region Blog
         BlogPostRepositoryInterface::class => BlogPostRepositoryElo::class,
         BlogCategoryRepositoryInterface::class => BlogCategoryRepositoryElo::class,
-        BlogCommentRepositoryInterface::class => BlogCommentRepositoryElo::class
-
+        BlogCommentRepositoryInterface::class => BlogCommentRepositoryElo::class,
+        BlogServiceAbstract::class => BlogServiceMaster::class
         // endregion
     ];
 
